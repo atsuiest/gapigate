@@ -1,0 +1,35 @@
+---
+webClient:
+  host: 127.0.0.1
+  port: "8000"
+credentials:
+  username: admin
+  password: admin
+plugins:
+  - type: jwt
+    validations:
+      - name: public
+        claim: system
+        value: public
+        secret: unique
+      - name: private
+        claim: system
+        value: private
+        secret: unique
+secrets:
+  - name: unique
+    path: JWT_SECRET
+endpoints:
+  - base: /api/test
+    backend:
+      - pattern: /gotest
+        method: GET
+        target:
+          url: http://localhost:8080/target
+          ssl: false
+          method: GET
+          encrypted: false
+        plugins:
+          - type: JWT
+            name: public
+
