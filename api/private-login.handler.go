@@ -6,8 +6,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PublicLoginHandler(ctx *fiber.Ctx) error {
-	token, err := controller.PublicLogin(ctx)
+func PrivateLoginHandler(ctx *fiber.Ctx) error {
+	token, err := controller.PrivateLogin(ctx)
 	if err != nil {
 		ctx.Status(fiber.StatusInternalServerError).JSON(&res500)
 	}

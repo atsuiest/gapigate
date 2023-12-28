@@ -14,7 +14,7 @@ type Configuration struct {
 		Port string `yaml:"port"`
 	} `yaml:"webClient"`
 	Endpoints   []model.Endpoint `yaml:"endpoints"`
-	Plugins     []model.Plugin   `yaml:"plugin"`
+	Plugins     []model.Plugin   `yaml:"plugins"`
 	Credentials struct {
 		Username string `yaml:"username"`
 		Password string `yaml:"password"`
@@ -26,6 +26,7 @@ var (
 	ErrorFileNotFound = "Configuration file not found"
 	ErrorYamlFormat   = "Invalid yaml file"
 	GlobalConf        = &Configuration{}
+	ValidationsMap    = map[string]model.Validation{}
 )
 
 func init() {
@@ -45,8 +46,10 @@ func init() {
 		log.Error(err.Error())
 		os.Exit(0)
 	}
-	// if yaml.Unmarshal(file, &GlobalConf) != nil {
-	// 	println(ErrorYamlFormat)
-	// 	os.Exit(0)
-	// }
+	ValidationsMap = map[string]model.Validation{}
+	for _, v := range GlobalConf.Plugins {
+		for _, w := range v.Validations {
+			ValidationsMap[v.Type+"|"+w.Name] = w
+		}
+	}
 }

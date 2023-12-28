@@ -6,8 +6,13 @@ type Plugin struct {
 }
 
 type Validation struct {
-	Name   string `yaml:"name"`
-	Claim  string `yaml:"claim"`
-	Value  string `yaml:"value"`
-	Secret string `yaml:"secret"`
+	Name   string  `yaml:"name"`
+	Claims []Claim `yaml:"claims"`
+	Value  string  `yaml:"value"`
+	Secret string  `yaml:"secret"`
+}
+
+type Claim struct {
+	Key   string `yaml:"key"`
+	Value string `yaml:"value"`
 }

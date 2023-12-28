@@ -11,9 +11,9 @@ type Endpoint struct {
 			Method    string `yaml:"method"`
 			Encrypted bool   `yaml:"encrypted"`
 		} `yaml:"target"`
-		Plugins []struct {
-			Type string `yaml:"type"`
-			Name string `yaml:"name"`
-		} `yaml:"plugins"`
+		Plugin struct {
+			JwtEnabled bool   `yaml:"jwtEnabled"`
+			JwtName    string `yaml:"jwtName"`
+		} `yaml:"plugin"`
 	} `yaml:"backend"`
 }
