@@ -8,11 +8,11 @@
 ### TODO
 
 
+- [ ] Add throtling and IP filter for public JWT
+- [ ] OpenSource this thing
+- [X] Add claim validation for protected endpoints (must match target system with system claim)
+- [X] Add JWT plugin as middleware to Fiber
 - [X] Initial commit
 - [X] Readme with TODO and a funny quote
 - [X] Pass initial test
-- [ ] Create login to get a JWT token for public access
-- [ ] Add throtling and IP filter for public JWT
-- [ ] Add claim validation for protected endpoints (must match target system with system claim)
-- [ ] Add JWT plugin as middleware to Fiber
-- [ ] OpenSource this thing
+- [X] Create login to get a JWT token for public access

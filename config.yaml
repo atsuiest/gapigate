@@ -9,27 +9,43 @@ plugins:
   - type: jwt
     validations:
       - name: public
-        claim: system
-        value: public
         secret: unique
+        claims:
+        - key: system
+          value: public
       - name: private
-        claim: system
-        value: private
         secret: unique
+        claims:
+        - key: system
+          value: private
+        - key: user
+          value:
+        - key: role
+          value: 
 secrets:
   - name: unique
     path: JWT_SECRET
 endpoints:
   - base: /api/test
     backend:
-      - pattern: /gotest
+      - pattern: /public
         method: GET
         target:
           url: http://localhost:8080/target
           ssl: false
           method: GET
           encrypted: false
-        plugins:
-          - type: JWT
-            name: public
+        plugin:
+          jwtEnabled: true
+          jwtName: public
+      - pattern: /private
+        method: GET
+        target:
+          url: http://localhost:8080/target
+          ssl: false
+          method: GET
+          encrypted: false
+        plugin:
+          jwtEnabled: true
+          jwtName: private
 
