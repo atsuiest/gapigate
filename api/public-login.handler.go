@@ -9,7 +9,7 @@ import (
 func PublicLoginHandler(ctx *fiber.Ctx) error {
 	token, err := controller.PublicLogin(ctx)
 	if err != nil {
-		ctx.Status(fiber.StatusInternalServerError).JSON(&res500)
+		ctx.Status(fiber.StatusInternalServerError).JSON(&RES500)
 	}
 	return ctx.Status(fiber.StatusOK).JSON(&model.Response{
 		Code: "OK200",

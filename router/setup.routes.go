@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/atsuiest/gapigate/api"
 	"github.com/atsuiest/gapigate/config"
 	"github.com/atsuiest/gapigate/plugins"
 
@@ -19,7 +20,7 @@ func SetupRoutes(app *fiber.App) {
 					if ok {
 						return c.Next()
 					} else {
-						return plugins.DenyAccess(c)
+						return c.Status(fiber.StatusForbidden).JSON(&api.RES403)
 					}
 				}, proxy.Forward(endpoint.Target.URL))
 			} else {

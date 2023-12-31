@@ -4,7 +4,6 @@ import (
 	"os"
 
 	"github.com/atsuiest/gapigate/model"
-	log "github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v2"
 )
 
@@ -19,7 +18,6 @@ type Configuration struct {
 		Username string `yaml:"username"`
 		Password string `yaml:"password"`
 	} `yaml:"credentials"`
-	Secrets []model.Secret `yaml:"secrets"`
 }
 
 var (
@@ -32,18 +30,18 @@ var (
 func init() {
 	urlconfig := os.Getenv("CONFIG")
 	if urlconfig == "" {
-		log.Info("Using PWD os " + urlconfig)
+		println("Using PWD os " + urlconfig)
 		pwd, _ := os.Getwd()
 		urlconfig = pwd + "/config.yaml"
 	}
 	file, err := os.ReadFile(urlconfig)
 	if err != nil {
-		println(ErrorFileNotFound + " intentando acceder a la ruta: " + urlconfig)
+		println(ErrorFileNotFound + " trying accessing " + urlconfig)
 		os.Exit(0)
 	}
 	err = yaml.Unmarshal(file, &GlobalConf)
 	if err != nil {
-		log.Error(err.Error())
+		println(err.Error())
 		os.Exit(0)
 	}
 	ValidationsMap = map[string]model.Validation{}

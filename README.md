@@ -1,4 +1,4 @@
-> ![](https://imgur.com/0JvRd6C)
+> ![](https://i.imgur.com/0JvRd6C.png)
 > ##### "Yeah, well... I'm gonna go build my own API Gateway, with blackjack and hookers. In fact, forget the hookers"
 > 
 > ###### *- Things that Bender never said*
@@ -8,6 +8,8 @@
 ### TODO
 
 
+- [ ] Add request decrypt when endpoint encrypting is enabled
+- [ ] Add response encrypt when endpoint encrypting is enabled
 - [ ] Add throtling and IP filter for public JWT
 - [ ] OpenSource this thing
 - [X] Add claim validation for protected endpoints (must match target system with system claim)

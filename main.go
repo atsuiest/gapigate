@@ -1,8 +1,6 @@
 package main
 
 import (
-	"os"
-
 	"github.com/atsuiest/gapigate/api"
 	"github.com/atsuiest/gapigate/router"
 	"github.com/gofiber/fiber/v2"
@@ -10,7 +8,7 @@ import (
 )
 
 func main() {
-	os.Setenv("JWT_SECRET", "WARNING_FOR_TEST_ONLY") // Warning: Use this secret only for testing purposes
+	//os.Setenv("JWT_SECRET", "JwtSecretKey") // Warning: Use this secret only for testing purposes
 
 	app := fiber.New()
 	// Initialize default config
@@ -24,5 +22,5 @@ func main() {
 	app.Get("/public/login", api.PublicLoginHandler)
 	app.Get("/private/login", api.PrivateLoginHandler)
 	router.SetupRoutes(app)
-	app.Listen("127.0.0.1:3000")
+	app.Listen("127.0.0.1:3000") // Using ":3000" may cause Security prompts on Windows
 }
