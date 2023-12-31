@@ -1,7 +1,7 @@
 > ![](https://i.imgur.com/YQ51Vzj.png)
-> ##### "Yeah, well... I'm gonna go build my own API Gateway, with blackjack and hookers. In fact, forget the hookers"
+> ##### *"Yeah, well... I'm gonna go build my own API Gateway, with blackjack and hookers. In fact, forget the hookers"*
 > 
-> ###### *- Things that Bender never said*
+> ###### - Things that Bender never said
 > 
 
 
