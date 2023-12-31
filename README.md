@@ -1,4 +1,4 @@
-> ![](https://i.imgur.com/0JvRd6C.png)
+> ![](https://i.imgur.com/YQ51Vzj.png)
 > ##### "Yeah, well... I'm gonna go build my own API Gateway, with blackjack and hookers. In fact, forget the hookers"
 > 
 > ###### *- Things that Bender never said*
