@@ -4,6 +4,7 @@ import (
 	"github.com/atsuiest/gapigate/api"
 	"github.com/atsuiest/gapigate/router"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
@@ -13,6 +14,7 @@ func main() {
 	app := fiber.New()
 	// Initialize default config
 	app.Use(logger.New())
+	app.Use(cors.New())
 
 	// Or extend your config for customization
 	// Logging remote IP and Port
