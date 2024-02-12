@@ -1,9 +1,9 @@
 package plugins
 
 import (
-	"os"
 	"strings"
 
+	"github.com/atsuiest/gapigate/config"
 	"github.com/atsuiest/gapigate/model"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
@@ -23,7 +23,7 @@ func CheckClaims(ctx *fiber.Ctx, validation model.Validation) bool {
 	if tokenString == "" {
 		return false
 	}
-	secret := []byte(os.Getenv("JWT_SECRET"))
+	secret := config.GlobalConf.JwtSecret
 	tokenByte, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil
 	})
@@ -41,5 +41,8 @@ func CheckClaims(ctx *fiber.Ctx, validation model.Validation) bool {
 		}
 		valid = claims[v.Key] != nil && (v.Value == "" || claims[v.Key] == v.Value)
 	}
+	ctx.Set("X-User", claims["user"].(string))
+	ctx.Set("X-Site", claims["site"].(string))
+	ctx.Set("X-Roles", claims["roles"].(string))
 	return true
 }

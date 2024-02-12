@@ -24,5 +24,7 @@ func main() {
 	app.Get("/public/login", api.PublicLoginHandler)
 	app.Get("/private/login", api.PrivateLoginHandler)
 	router.SetupRoutes(app)
+	// data, _ := json.MarshalIndent(app.Stack(), "", "  ")
+	// fmt.Println(string(data))
 	app.Listen("127.0.0.1:3000") // Using ":3000" may cause Security prompts on Windows
 }

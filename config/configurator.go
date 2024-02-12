@@ -1,13 +1,16 @@
 package config
 
 import (
+	"fmt"
 	"os"
+	"strings"
 
 	"github.com/atsuiest/gapigate/model"
 	"gopkg.in/yaml.v2"
 )
 
 type Configuration struct {
+	JwtSecret string `yaml:"jwtSecret"`
 	WebClient struct {
 		Host string `yaml:"host"`
 		Port string `yaml:"port"`
@@ -25,6 +28,7 @@ var (
 	ErrorYamlFormat   = "Invalid yaml file"
 	GlobalConf        = &Configuration{}
 	ValidationsMap    = map[string]model.Validation{}
+	BackendMap        = map[string]model.Backend{}
 )
 
 func init() {
@@ -49,5 +53,18 @@ func init() {
 		for _, w := range v.Validations {
 			ValidationsMap[v.Type+"|"+w.Name] = w
 		}
+	}
+	BackendMap = map[string]model.Backend{}
+	for _, v := range GlobalConf.Endpoints {
+		for _, w := range v.Backend {
+			target := strings.Split(w.Pattern, "/:")
+			if len(target) > 1 {
+				target[0] = target[0] + "/::"
+			}
+			BackendMap[w.Method+"|"+v.Base+target[0]] = w
+		}
+	}
+	for k, v := range BackendMap {
+		fmt.Println(k, "value is", v)
 	}
 }
