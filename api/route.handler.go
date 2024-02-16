@@ -44,7 +44,10 @@ func findMap(key string) interface{} {
 }
 
 func validateAccess(ctx *fiber.Ctx, jwtName string) bool {
-	validation := config.ValidationsMap["jwt|"+jwtName]
+	validation, ok := config.ValidationsMap["jwt|"+jwtName]
+	if !ok {
+		return false
+	}
 	return plugins.CheckClaims(ctx, validation)
 }
 
